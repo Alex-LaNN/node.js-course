@@ -1,5 +1,4 @@
 
-let countId = 0;
 class Product {
     constructor(ID, name,
         description,
@@ -20,25 +19,45 @@ class Product {
         this.reviews = [];
         this.images = [];
 
-        this.getDate = function() {
+        this.getDate = function () {
             return new Date();
-        }
-        this.setDate = function() {
-            return this.date.setDate// + " " + this.date.setTime;
-        }
-        this.getID = function() {
+        };
+        this.setDate = function () {
+            return this.date.setDate;
+        };
+
+        this.getID = function () {
             return this.ID;
-        }
-        this.setID = function(newID) {
+        };
+        this.setID = function (newID) {
             this.ID = newID;
-        }
-        this.getName = function() {
+        };
+
+        this.getName = function () {
             return this.name;
-        }
-        this.setName = function(newName) {
+        };
+        this.setName = function (newName) {
             this.name = newName;
-        }
-        
+        };
+
+        this.getDescription = function () {
+            return description;
+        };
+        this.setDescription = function (newDescription) {
+            this.description = newDescription;
+        };
+
+        this.getPrice = function () {
+            this.price = price;
+        };
+        this.setPrice = function (newPrice) {
+            if (newPrice > 0 && isFloat(newPrice)) {
+                this.price = newPrice;
+            } else console.log( `Некорректное значение 'price'` );
+        };
+
+
+
     }
 
     info() {
@@ -57,6 +76,15 @@ class Product {
             this.date
         );
     }
+}
+// проверка значения на 'Float'
+function isFloat(number) {
+  // проверка, является ли аргумент числом и не является ли он NaN
+  if (typeof number === "number" && !isNaN(number)) {
+    // проверка, является ли значение числом с плавающей точкой
+    return Number.isFinite(number) && number % 1 !== 0;
+  }
+  return false;
 }
 
 
