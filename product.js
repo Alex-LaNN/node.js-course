@@ -12,20 +12,22 @@ class Product {
         this.description = description;
         this.price = price;
         this.brand = brand;
-        this.sizes = sizes;
+        this.sizes = ["XS", "S", "M", "L", "XL", "XXL"];
         this.activeSize = activeSize;
         this.quantity = quantity;
         this.date = new Date().toISOString().slice(0, 19).replace("T", " ");
         this.reviews = [];
         this.images = [];
 
+        // +++
         this.getDate = function () {
-            return new Date();
+            return new Date().toISOString().slice(0, 19).replace("T", " ");
         };
         this.setDate = function () {
             return this.date.setDate;
         };
 
+        // +++
         this.getID = function () {
             return this.ID;
         };
@@ -33,6 +35,7 @@ class Product {
             this.ID = newID;
         };
 
+        // +++
         this.getName = function () {
             return this.name;
         };
@@ -40,6 +43,7 @@ class Product {
             this.name = newName;
         };
 
+        // +++
         this.getDescription = function () {
             return description;
         };
@@ -47,6 +51,7 @@ class Product {
             this.description = newDescription;
         };
 
+        // +++
         this.getPrice = function () {
             this.price = price;
         };
@@ -56,15 +61,35 @@ class Product {
             } else console.log( `Некорректное значение 'price'` );
         };
 
+        // +++
+        this.getBrand = function () {
+            return this.brand;
+        };
+        this.setBrand = function (newBrand) {
+            this.brand = newBrand;
+        };
 
+        this.getSizes = function () {
+            return 
+        }
+
+        // ---
+        this.getActiveSize = function () {
+            return this.activeSize;
+        };
+        this.setActivesize = function (newActiveSize) {
+            if (this.sizes.includes(newActiveSize)) {
+                this.activeSize = newActiveSize;
+            } else console.log(`Данный размер в списке размеров отсутствует!`);
+        }
 
     }
 
     info() {
         console.log(
-            "ID: " + 
-            this.ID + 
-          ", name: " +
+          "ID: " +
+            this.ID +
+            ", name: " +
             this.name +
             ", description: " +
             this.description +
@@ -72,25 +97,28 @@ class Product {
             this.price +
             ", brand: " +
             this.brand +
+            ", activeSize: " +
+            this.activeSize +
             ", date: " +
             this.date
         );
     }
 }
+
 // проверка значения на 'Float'
 function isFloat(number) {
-  // проверка, является ли аргумент числом и не является ли он NaN
+  // проверка: является ли аргумент числом и не является ли он NaN
   if (typeof number === "number" && !isNaN(number)) {
-    // проверка, является ли значение числом с плавающей точкой
+    // проверка: является ли значение числом с плавающей точкой
     return Number.isFinite(number) && number % 1 !== 0;
   }
   return false;
 }
 
 
-let auto1 = new Product (1, 'Opel', 'machine', 10000, 'GM');
-let auto2 = new Product(2, 'Ford', 'machine', 8000, 'Ford');
-let auto3 = new Product(3, 'Mersedes', 'machine', '12000', 'Mersedes')
+let auto1 = new Product (1, 'Opel', 'machine', 10000, 'GM', 'M');
+let auto2 = new Product(2, 'Ford', 'machine', 8000, 'Ford', 'L');
+let auto3 = new Product(3, 'Mersedes', 'machine', '12000', 'Mersedes', 'XL')
 let auto4 = new Product();
 
 auto1.info();
