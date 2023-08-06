@@ -74,7 +74,8 @@ class ProductManager {
 
     // Adding a new review to the list of product reviews.
     this.addReview = function (name, author, date, comment, rating) {
-      const ID = this.reviews.length > 0 ? this.reviews.length : 0;
+      const ID = this.reviews.length > 0 ? (this.reviews.length + 1) : 1;
+//      const ID = this.searchProducts(this.products, name).getID;
       // Create a new review.
       const review = {
         ID,
