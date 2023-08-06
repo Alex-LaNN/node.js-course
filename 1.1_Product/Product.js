@@ -20,8 +20,8 @@ class Product {
     this.activeSize = sizes.length > 0 ? sizes[0] : null;
     this.quantity = quantity;
     this.date = new Date().toISOString().slice(0, 19).replace("T", " ");
-    this.reviews = [];
-    this.images = [];
+    this.reviews = reviews;
+    this.images = images;
   }
   // Returns the product name.
   getName() {

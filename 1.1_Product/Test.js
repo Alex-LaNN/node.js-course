@@ -90,7 +90,7 @@ function runTests() {
     "Носки",
     "Alex",
     "2023-08-01 11:00:00",
-    "Носки достаточно теплые, полностью доволен!...",
+    "Носки достаточно теплые, покупкой доволен!...",
     "10"
   );
 
@@ -123,7 +123,7 @@ function runTests() {
     const productId = 3;
     productManager.deleteProduct(productId);
     console.log(
-      `4. Оставшиеся продукты в списке продуктов после удаления продукта № ${productId}:`,
+      `4. Оставшиеся продукты в списке продуктов после удаления из него продукта № ${productId}:`,
       productManager.products
     );
   }
