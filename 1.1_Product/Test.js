@@ -77,6 +77,7 @@ function runTests() {
   productManager.addProduct(product3);
   productManager.addProduct(product4);
   productManager.addProduct(product5);
+  
   // Add a 'review' object to the 'reviews' array.
   productManager.addReview(
     "Рубашка",
