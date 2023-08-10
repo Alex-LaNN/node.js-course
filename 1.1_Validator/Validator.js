@@ -6,6 +6,7 @@ class Validator {
     this.password = password;
     this.dataList = [];
     this.dataLists = [];
+    this.ValidateEnteredParametersOfUser = [];
     this.results = [];
   }
 
@@ -30,33 +31,31 @@ class Validator {
   }
 
   //
-  addResults(
+  addResult(
     userId,
     resultValidateEmail,
     resultValidatePassword,
     resultValidatePhone
   ) {
-    return this.results.push(
-      this.userId = userId,
-      this.resultValidateEmail = resultValidateEmail,
-      this.resultValidatePassword = resultValidatePassword,
-      this.resultValidatePhone = resultValidatePhone
+    return this.ValidateEnteredParametersOfUser.push(
+      (this.userId = userId),
+      (this.resultValidateEmail = resultValidateEmail),
+      (this.resultValidatePassword = resultValidatePassword),
+      (this.resultValidatePhone = resultValidatePhone)
     );
   }
 
   //
-  validateEmail(email) {
-    // const test = /^(\w[a-z0-9]{2, 20})@([\w-.!$%&`*+/=?^]{1, 15})\.(a-z){1, 3}$/gi;
+  addResults(ValidateEnteredParametersOfUser) {
+    return this.results.push(ValidateEnteredParametersOfUser);
+  }
 
+  //
+  validateEmail(email) {
     // Проверка на корректность вводимого email-адреса.
     const regexp =
-      /^[a-zA-Z0-9][a-zA-Z0-9.+-]{1,19}@[a-zA-Z0-9.!$%&*+/=?^_-]{1,15}\.[a-zA-Z]{1,3}$/g;
-
+      /^[a-z0-9][a-z0-9.+-]{1,19}@[a-z0-9.!$%&*+/=?^_-]{1,15}\.[a-z]{1,3}$/iu;
     return regexp.test(email);
-
-    // const regexp =
-    //   /^ ... $/;
-    //    return regexp.test(email);
   }
 
   // Проверка на корректность вводимого номера телефона.
@@ -64,21 +63,23 @@ class Validator {
     // Проверка максимального количества введенных символов в строке (телефоне).
     if (phone.length > 25) {
       return false;
+    } else {
+      // Выбрать из строки только цифры.
+      const cleanedPhone = phone.replace(/[^\d]/g, "");
+      const numberSize = cleanedPhone.length;
+      // Количественно-численная проверка корректности введенного пользователем номера телефона.
+      if (numberSize !== 12 && numberSize !== 10) return false;
     }
-
-    // Проверка корректности номера телефона.
-    const regexp = /^...$/;
+    // Посимвольная проверка корректности номера телефона.
+    const regexp = /^(\+\d\d)?[\s-]*\(?\d{3}[\s-]*\)?([\s-]*\d){7}$/u;
     return regexp.test(phone);
   }
 
   // Проверка на корректность устанавливаемого значения пароля.
-  validatePassword() { }
-  
+  validatePassword() {}
+
   // Вывод имени пользователя 'userId' и некорректно введенные им поля данных.
-  getIncorrectlyEnteredData() {
-
-  }
-
+  getIncorrectlyEnteredData() {}
 }
 
 module.exports = Validator;

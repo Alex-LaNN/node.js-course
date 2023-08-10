@@ -4,7 +4,7 @@ const Validator = require("./Validator");
 function runTests() {
   // Вод информации первым пользователем.
   const user0 = new Validator(
-    "fi@secondpart.end",
+    "fi@seconDpart.end",
     "+38 (099) 567 8901",
     "C00l_Pass"
   );
@@ -12,19 +12,19 @@ function runTests() {
   // Вод информации вторым пользователем.
   const user1 = new Validator(
     "first-part@.se=cond%p.art.end",
-    "+38 099 5 6 7 8 9  01",
+    "+12 099 5 6 7-8 9  01",
     "SupperPas1"
   );
 
   // Вод информации третьим пользователем.
   const user2 = new Validator(
-    "first.part@se=cond%part.r",
+    "firSt.part@se=cond%part.r",
     "(09-9) 567-890-1",
     "Next_SuperPass0"
   );
 
   // Вод информации четвертым пользователем.
-  const user3 = new Validator("1+@’.y", "--  (099) 567 890-1", "BigPassword0");
+  const user3 = new Validator("1+@’.Y", "--  (099) 567 890-1", "BigPassword0");
 
   // Вод информации пятым пользователем.
   const user4 = new Validator(
@@ -42,7 +42,7 @@ function runTests() {
 
   // Вод информации седьмым пользователем.
   const user6 = new Validator(
-    "-firstpart@.se=cond%.enddeded",
+    "-firstpart@.se=cOnd%.enddeded",
     "+38 (0989) 567 8901",
     "_passNext"
   );
@@ -69,25 +69,62 @@ function runTests() {
 
   // Обработка базы данных.
   for (let i = 0; i < validator.dataLists.length; i++) {
+    // Получение всех данных для проверки, введенных определенным пользователем.
     const dataListValue = validator.dataLists[i];
-    const stringValueOfEmail = dataListValue.getEmail();
-    const stringValueOfPassword = dataListValue.getPassword();
-    const stringValueOfPhone = dataListValue.getPhone();
-    // Результат проверки корректности введенного 'Email'.
-    const resultValidateEmail = validator.validateEmail(stringValueOfEmail);
-    // Результат проверки корректности введенного 'Password'.
-    const resultValidatePassword = validator.validatePassword(
-      stringValueOfPassword
+    // Результат проверки корректности введенного пользователем 'Email'.
+    const resultValidateEmail = validator.validateEmail(
+      dataListValue.getEmail()
     );
-    // Результат проверки корректности введенного 'Phone'.
-    const resultValidatePhone = validator.validatePhone(stringValueOfPhone);
-    // Сбор полученных результатов.
-    validator.addResults(
-      i,
+    // Результат проверки корректности введенного пользователем 'Password'.
+    const resultValidatePassword = validator.validatePassword(
+      dataListValue.getPassword()
+    );
+    // Результат проверки корректности введенного пользователем 'Phone'.
+    const resultValidatePhone = validator.validatePhone(
+      dataListValue.getPhone()
+    );
+    // Генерация и вывод на консоль всей информации, получаемой при тестировании.
+    getResultForConsole(
       resultValidateEmail,
+      i,
+      dataListValue,
       resultValidatePassword,
       resultValidatePhone
     );
+  }
+
+  // Генерация и вывод на консоль всей информации, получаемой при тестировании.
+  function getResultForConsole(
+    resultValidateEmail,
+    i,
+    dataListValue,
+    resultValidatePassword,
+    resultValidatePhone
+  ) {
+    if (!resultValidateEmail) {
+      console.log(
+        `User${i} Некорректно введен Email    : ${dataListValue.getEmail()}`
+      );
+    } else
+      console.log(
+        `User${i} Email введен корректно      : ${dataListValue.getEmail()}`
+      );
+    if (!resultValidatePassword) {
+      console.log(
+        `User${i} Некорректно введен Password : ${dataListValue.getPassword()}`
+      );
+    } else
+      console.log(
+        `User${i} Password введен корректно : ${dataListValue.getPassword()}`
+      );
+    if (!resultValidatePhone) {
+      console.log(
+        `User${i} Некорректно введен Phone    : ${dataListValue.getPhone()}`
+      );
+    } else
+      console.log(
+        `User${i} Phone введен корректно      : ${dataListValue.getPhone()}`
+      );
   }
 }
 
