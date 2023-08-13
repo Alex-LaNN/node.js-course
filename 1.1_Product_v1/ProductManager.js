@@ -75,7 +75,6 @@ class ProductManager {
     // Adding a new review to the list of product reviews.
     this.addReview = function (name, author, date, comment, rating) {
       const ID = this.reviews.length > 0 ? (this.reviews.length + 1) : 1;
-//      const ID = this.searchProducts(this.products, name).getID;
       // Create a new review.
       const review = {
         ID,
@@ -100,9 +99,9 @@ class ProductManager {
   }
 }
 
-// Creates a new object that inherits the 'Product' class's prototype.
-ProductManager.prototype = Object.create(Product.prototype);
-// Override reference to native constructor for 'ProductManager' class instances.
-ProductManager.prototype.constructor = ProductManager;
+// // Creates a new object that inherits the 'Product' class's prototype.
+// ProductManager.prototype = Object.create(Product.prototype);
+// // Override reference to native constructor for 'ProductManager' class instances.
+// ProductManager.prototype.constructor = ProductManager;
 
 module.exports = ProductManager;

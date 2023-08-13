@@ -73,7 +73,7 @@ class Validator {
   // Checking for correctness of the string containing the 'password' value.
   validatePassword(password) {
     // Regular expression used for character-by-character validation of the string being checked.
-    const regexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_]{8,}$/;
+    const regexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-z\d_]{8,}$/i;
     return regexp.test(password);
   }
 }
