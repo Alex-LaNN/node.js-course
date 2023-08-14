@@ -1,4 +1,4 @@
-// 
+//
 class AbstractProduct {
   // Sets the initial value of the unique product identifier (ID).
   static productID = 1;
@@ -6,21 +6,20 @@ class AbstractProduct {
     name,
     description,
     price,
+    brand,
     quantity,
-    reviews,
-    images,
-    date,
-    brand
+    reviews = [],
+    images = []
   ) {
-    this.ID = productID++;
     this.name = name;
+    this.ID = this.name === undefined ? 0 : AbstractProduct.productID++;
     this.description = description;
     this.price = price;
+    this.brand = brand;
     this.quantity = quantity;
     this.reviews = reviews;
     this.images = images;
     this.date = new Date().toISOString().slice(0, 19).replace("T", " ");
-    this.brand = brand;
   }
 
   // Returns the product ID.
@@ -97,8 +96,8 @@ class AbstractProduct {
     return this.date;
   }
   // Fixing the value of the date and time at the present moment.
-  setDate(newDate) {
-    this.date = new Date(newDate).toISOString().slice(0, 19).replace("T", " ");
+  setDate() {
+    this.date = new Date().toISOString().slice(0, 19).replace("T", " ");
   }
 
   // Returns the brand of the product.
@@ -110,11 +109,34 @@ class AbstractProduct {
     this.brand = newBrand;
   }
 
-  getFullInformation() {}
+  // 
+  getFullInformation() {
+    return Object.entries(this)
+      .map(([key, value]) => `${key} - ${value}`)
+      .join("\n");
+  }
 
-  getPriceForQuantity(int) {}
+  //
+  getPriceForQuantity(quantity) {
+    const totalPrice = this.price * quantity;
+    return `$${totalPrice.toFixed(2)}`;
+  }
 
-  universalGetterSetter() {}
+  //
+  universalGetterSetter(property, newValue) {
+    if (property in this) {
+      if (newValue === undefined) {
+        return this[property];
+      } else {
+        this[property] = newValue;
+      }
+    } else {
+      console.log(`Property '${property}' not found.`);
+    }
+  }
 }
+
+// Sets the initial value of the unique product identifier (ID).
+let productID = 1;
 
 module.exports = AbstractProduct;
