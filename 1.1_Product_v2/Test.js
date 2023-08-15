@@ -1,21 +1,20 @@
 const Clothes = require("./Clothes");
 const Electronics = require("./Electronics");
-
+// Test function.
 function runTests() {
   const clothes = new Clothes();
   const electronics = new Electronics();
-
   const clothes1 = new Clothes(
-    "Футболка",
-    "Удобная футболка для повседневной носки",
+    "Тельняшка",
+    "Удобная нательная рубашка с рукавами для повседневной носки",
     25.99,
-    "Nike",
+    "Armour-Lux",
     ["S", "M", "L"],
     100,
     [],
     ["image1.jpg", "image2.jpg"],
     "Хлопок",
-    "Синий"
+    "Синий с белым"
   );
 
   const clothes2 = new Clothes(
@@ -80,13 +79,14 @@ function runTests() {
     150
   );
 
+  // Add the generated products to an array containing all products.
   clothes.addProduct(clothes1);
   clothes.addProduct(clothes2);
   clothes.addProduct(clothes3);
-
-  // electronics.addProduct(electronics1);
-  // electronics.addProduct(electronics2);
-  // electronics.addProduct(electronics3);
+  // Add the generated products to an array containing all products.
+  electronics.addProduct(electronics1);
+  electronics.addProduct(electronics2);
+  electronics.addProduct(electronics3);
 
   // Add a 'review' object to the 'reviews' array.
   clothes.addReview(
@@ -104,6 +104,22 @@ function runTests() {
     "Отлично сидят на мне, свобоны в движении, носятся хорошо.",
     "10"
   );
+  // Add a 'review' object to the 'reviews' array.
+  electronics.addReview(
+    "Ноутбук",
+    "Alex",
+    "2023-08-02 12:05:00",
+    "Работает тихо. Тянет все мои игры. Немного греется, но не глючит.",
+    "9"
+  );
+  // Add a 'review' object to the 'reviews' array.
+  electronics.addReview(
+    "Телевизор",
+    "Alex",
+    "2023-08-02 15:43:00",
+    "Яркая, сочная картинка. Не ожидал такого. Отличный телик.",
+    "10"
+  );
 
   // Search for a product in the product list by its 'name'.
   searchProductByName();
@@ -117,76 +133,107 @@ function runTests() {
   // Removing a product from the product list by its 'ID'.
   removeProductById();
 
-  // Get the last added review from the list of all reviews.
+  // Get all recently added reviews from the review lists of all product groups.
   getLastReview();
 
   // Get a list of all reviews.
-  console.log(`6. Список всех отзывов о продуктах: `, clothes.reviews);
+  console.log(
+    `6. Список всех отзывов о продуктах: `,
+    clothes.reviews,
+    electronics.reviews
+  );
 
-  // Тестирование метода 'universalGetterSetter()'.
+  // Testing the method 'universalGetterSetter()'.
   testUniversalGetterSetter();
 
-  // Функция тестирования.
+  // Generic method testing function.
   function testUniversalGetterSetter() {
-    // Выбор продукта для тестирования метода.
+    // Selecting a product to test a method.
     const product = clothes1;
-    // Получение определенного свойства продукта.
-    console.log(`7. У продукта '${product.name}' получаем значение его поля 'brand': '${product.universalGetterSetter("brand")}'`);
-    // Переназначение определенного свойства продукта.
-    product.universalGetterSetter("brand", "Adidas");
-    //
+    // Retrieve a specific property of a product.
     console.log(
-      `8. После замены, у этого же продукта '${product.name}' новое значение поля 'brand': '${product.brand}'`
+      `7. У продукта '${
+        product.name
+      }' получено значение его поля 'brand': '${product.universalGetterSetter(
+        "brand"
+      )}'`
+    );
+    // Reassigning a specific product property.
+    product.universalGetterSetter("brand", "Adidas");
+    console.log(
+      `8. У этого же продукта '${product.name}' новое измененное значение поля 'brand': '${product.brand}'`
     );
   }
 
   // Get the last added review from the list of all reviews.
   function getLastReview() {
-    const review = clothes.getLastReview();
-    console.log(`5. Добавлен новый отзыв: `, review);
+    const lastClothesReview = clothes.getLastReview();
+    const lastElectronicsReview = electronics.getLastReview();
+    console.log(
+      `5. Добавленные последние отзывы, полученные из каждой группы: `,
+      lastClothesReview,
+      lastElectronicsReview
+    );
   }
 
   // Removes a product from the list of all products by the given ID.
   function removeProductById() {
-    const productId = 3;
-    clothes.deleteProduct(productId);
+    const productIdToDelete = 5;
+    clothes.deleteProduct(productIdToDelete);
+    electronics.deleteProduct(productIdToDelete);
     console.log(
-      `4. Оставшиеся продукты в списке продуктов после удаления продукта № ${productId}:`,
-      clothes.products
+      `4. Оставшиеся продукты в списке продуктов после удаления продукта № ${productIdToDelete}:`,
+      clothes.products,
+      electronics.products
     );
   }
 
   // Search for a product in the list of products based on its 'ID'.
   function findProductById() {
-    const productId = 2;
-    const productByID = clothes.getProductByID(productId);
+    const productIdToFind = 5;
+    const productFoundedByIDFromClothes =
+      clothes.getProductByID(productIdToFind);
+    const productFoundedByIDFromElectronics =
+      electronics.getProductByID(productIdToFind);
     console.log(
-      `3. Поиск продукта по значению его ID=${productId}:`,
-      productByID
+      `3. Поиск продукта по значению его ID=${productIdToFind}:`,
+      productFoundedByIDFromClothes,
+      productFoundedByIDFromElectronics
     );
   }
 
   // Sort products in the product list by 'price'.
   function sortProductsByPrice() {
-    const sortByPrice = clothes.sortProducts("price");
+    const sortClothesByPrice = clothes.sortProducts("price");
+    const sortElectronicsByPrice = electronics.sortProducts("price");
     console.log(
-      "2. Сортировка продуктов согласно значению их цены - по её возрастанию:",
-      sortByPrice
+      "2. Сортировка продуктов каждой группы товаров согласно значению их цены - по её возрастанию:",
+      sortClothesByPrice,
+      sortElectronicsByPrice
     );
   }
 
   // Search for a products in the product list by its 'name'.
   function searchProductByName() {
     // Declare a variable used to look up a product.
-    const nameOfProductForSearch = "Кур";
+    const nameOfProductForSearch = "Тел";
     // Products search using 'nameOfProductForSearch' value.
-    const productList = clothes.products;
+    const clothesProductList = clothes.products;
+    const electronicsProductList = electronics.products;
     // Get search result.
-    const result1 = clothes.searchProducts(productList, nameOfProductForSearch);
+    const result1 = clothes.searchProducts(
+      clothesProductList,
+      nameOfProductForSearch
+    );
+    const result2 = electronics.searchProducts(
+      electronicsProductList,
+      nameOfProductForSearch
+    );
     // Output result to console.
     console.log(
       `1. Результаты поиска продуктов по их названию - '${nameOfProductForSearch}':`,
-      result1
+      result1,
+      result2
     );
   }
 }
