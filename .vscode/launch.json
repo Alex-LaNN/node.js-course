@@ -5,14 +5,8 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-//      "program": "${workspaceFolder}\\..\\development\\1.1_Validator\\Test.js"
-//      "program": "${workspaceFolder}\\..\\node.js-course\\1.1_Validator\\Test.js"
-//      "program": "${workspaceFolder}\\..\\node.js-course\\1.1_Product_v1\\Test.js"
-      "program": "${workspaceFolder}\\..\\node.js-course\\1.1_Product_v2\\Test.js"
-//      "program": "${workspaceFolder}\\..\\development\\1.1_Product_v2\\Test.js"
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}\\..\\node.js-course\\go2.js"
     }
   ]
 }
