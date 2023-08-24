@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}\\..\\node.js-course\\go2.js"
+      "program": "${workspaceFolder}\\..\\node.js-course\\go5.js"
     }
   ]
 }
