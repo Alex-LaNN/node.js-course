@@ -2,39 +2,40 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-// Создание сервера
+// Server creation.
 const server = http.createServer((req, res) => {
-    if (req.url === `http://${HOST}:${PORT}`) {
-  res.writeHead(200, { "Content-Type": "image/x-icon" });
-     return res.end();
-   }
+  //
+  if (req.url == "/favicon.ico") {
+    return;
+  }
 
-  // Получение пути к файлу счетчика
-  const filePath = path.join(__dirname, "counter.txt");
+  // Getting the path to the counter file.
+  const filePath = path.join(__dirname, "file_for_counter.txt");
 
-  // Чтение текущего значения счетчика из файла
+  // Reading the current counter value from a file.
   let counter = 0;
   try {
     counter = parseInt(fs.readFileSync(filePath, "utf-8")) || 0;
   } catch (error) {
-    // Если файл не существует, счетчик останется равным 0
+    // If the file does not exist, the counter will remain at 0.
   }
 
-  // Увеличение счетчика
-  counter++;  // не соблюдается условие увеличения счетчика на '1' (увеличивает на '2')!!!!
+  // Counter increase.
+  counter++;
 
-  // Запись нового значения счетчика в файл
+  // Writing a new counter value to a file.
   fs.writeFileSync(filePath, counter.toString(), "utf-8");
 
-  // Отправка ответа с текущим значением счетчика
+  // Sending a response with the current value of the counter.
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
   res.end(`<h1>${counter}</h1>`);
 });
 
-// Запуск сервера на порте 8000
+// Constants to specify the port and host on which the server will run.
 const PORT = 8000;
 const HOST = "localhost";
 
+// Start listening on the server on the specified port and host.
 server.listen(PORT, HOST, () => {
   console.log(`Сервер запущен: http://${HOST}:${PORT}`);
 });

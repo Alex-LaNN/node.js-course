@@ -38,7 +38,7 @@ let contents = readHttpLikeInput();
  */
 function outputHttpResponse(statusCode, statusMessage, headers, body) {
   const protocol = "HTTP/1.1";
-  const date = new Date().toUTCString();
+  const date = getDate();
   const server = "Apache/2.2.14 (Win32)";
   const contentLenght = body.length;
   const connection = "Closed";
@@ -55,8 +55,16 @@ ${body}
 `);
 }
 
+/**
+ * Processes an HTTP request by creating and sending an HTTP response.
+ *
+ * @param {string} method - HTTP method of the request.
+ * @param {string} uri - Resource URI.
+ * @param {Object} headers -An object with HTTP headers for the request.
+ * @param {string} body - Request body.
+ */
 function processHttpRequest(method, uri, headers, body) {
-  // Извлечение базовой папки в зависимости от значения хедера Host.
+  // Assignment of the base folder for working with the file, depending on the value of the 'Host' header.
   let basePath = "";
   if (headers.Host.startsWith("student.shpp.me")) {
     basePath = "student";
@@ -66,30 +74,28 @@ function processHttpRequest(method, uri, headers, body) {
     basePath = "else";
   }
 
-  // Проверка, что URI равен "/".
+  // Assigning a given value to 'uri', under a certain condition.
   if (uri === "/") {
     uri = "/index.html";
   }
 
-  // Формирование пути к файлу.
+  // Formation of the path to the file.
   const filePath = path.join(__dirname, basePath, uri);
-//  console.log(filePath); /////////////////////////////////////////
 
   try {
-    // Чтение файла.
+    // Reading a file.
     const fileContent = fs.readFileSync(filePath, "utf-8");
-//    console.log(fileContent); ////////////////////////////////////
-    // Формирование HTTP ответа.
+    // Formation of an HTTP response:
     outputHttpResponse(200, "OK", headers, fileContent);
   } catch (error) {
     if (error.code === "ENOENT") {
-      // Файл не найден.
+      // If the file is not found.
       outputHttpResponse(404, "Not Found", headers, "not found");
     } else if (error.code === "EACCES") {
-      // Ошибка доступа.
+      // If access error.
       outputHttpResponse(403, "Forbidden", headers, "forbidden");
     } else {
-      // Другие ошибки.
+      // Other errors.
       outputHttpResponse(
         500,
         "Some server error",
@@ -126,12 +132,6 @@ function parseTcpStringAsHttpRequest(string) {
   const headers = parseHeaders(headerLines);
   // Extract value for 'body'.
   const body = lines.slice(index).join("");
-  // console.log({
-  //   method,
-  //   uri,
-  //   headers,
-  //   body,
-  // })
 
   return {
     method,
@@ -169,6 +169,24 @@ function parseHeaders(headerLines) {
 function splitLines(text) {
   // Use the regular expression /\r?\n/ to separate the text into lines.
   return text.split(/\r?\n/);
+}
+
+/**
+ * Gets the current date and time with a 3 hour offset.
+ *
+ * @returns {string} - Current date and time in UTC format.
+ */
+function getDate() {
+  // Getting the current date and time.
+  const currentDate = new Date();
+
+  // Local time setting (3 hours ahead).
+  currentDate.setHours(currentDate.getHours() + 3);
+
+  // Convert date to UTC string.
+  const date = currentDate.toUTCString();
+
+  return date;
 }
 
 // Parsing a string in TCP format as an HTTP request.
