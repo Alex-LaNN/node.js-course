@@ -1,0 +1,145 @@
+/* Стили для контейнера */
+.container {
+  /* Установка контейнеру flex-контекста для его дочерних элементов */
+  display: flex;
+  /* Установка направления контейнера по вертикали (столбцом) */
+  flex-direction: column;
+  /* Центрирование по горизонтали */
+  align-items: center;
+  /* Центрирование по вертикали */
+  justify-content: center;
+  /* Минимальная высота контейнера равная высоте видимой области окна браузера */
+  min-height: 100vh;
+  /*  */
+  margin: 10px;
+}
+
+/*  Стили для элемента 'body'  */
+body {
+  /* Установка шрифта для текста на странице */
+  font-family: Arial, sans-serif;
+  /* Уборка отступов по умолчанию для 'body' */
+  margin: 0;
+  /* Установка внутренних отступов для 'body' */
+  padding: 5px;
+}
+
+/*  Стили для класса .button  */
+.button {
+  height: 25px;
+  margin: 2px;
+  border-radius: 5px;
+  background-color: #4a9482;
+  /* Установка цвета текста на кнопке */
+  color: rgb(255, 255, 255);
+  /* Установка курсора мыши в виде указателя при наведении на кнопку */
+  cursor: pointer;
+  /* Создание тени кнопки */
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  /* Уборка границы кнопки */
+  border: none;
+  /* Уборка контура вокруг кнопки при фокусе */
+  outline: none;
+  /* Добавление плавной анимации для изменения цвета фона и трансформации кнопки */
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Стили для класса 'button' при наведении курсора */
+.button:hover {
+  /* Изменение цвета фона кнопки при наведении курсора */
+  background-color: #125040;
+  /* Увеличение размера кнопки на 10% при наведении курсора */
+  transform: scale(1.1);
+}
+
+/* Стили для класса 'black-squares' */
+.black-squares {
+  /* Делаем контейнер флекс-контейнером */
+  display: flex;
+  /* Расстояние между квадратами */
+  gap: 5px;
+}
+
+/* Стили для класса 'black-square' */
+.black-square {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  /* Добавление зеленой границы вокруг квадрата */
+  border: 1px solid green;
+  /* Выравнивание содержимого квадрата по центру */
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  /* Создание флекс-контейнера для центрирования содержимого */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Устанавливаем позицию как относительную для корректного отображения содержимого */
+  position: relative;
+  /* Устанавливаем курсор в виде указателя при наведении на квадрат */
+  cursor: pointer;
+}
+
+/* Стили для класса 'text' */
+.text {
+  color: white;
+}
+
+/* При наведении курсора на 'black-square', стили для класса 'tooltip' */
+.black-square:hover .tooltip {
+  /* Отображение подсказки при наведении */
+  opacity: 1;
+}
+
+/* Создаем стили для подсказки */
+.tooltip {
+  /* Устанавливаем абсолютное позиционирование для подсказки */
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  /* Расположение подсказки снизу */
+  top: 100%;
+  /* Величина наложения подсказки на элемент */
+  transform: translateY(-50%);
+  /* По умолчанию подсказка скрыта */
+  opacity: 0;
+  /* Добавление анимации для плавного изменения непрозрачности */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Стили для класса '.hidden' */
+.hidden {
+  /* Скрытие элемента */
+  display: none;
+}
+
+.yellow-square {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  border: 1px solid green;
+  margin: 0.1em;
+}
+
+.red-square {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  border: 1px solid green;
+  margin: 0.1em;
+}
+
+.green-rectangle {
+  width: 50px;
+  height: 20px;
+  background-color: green;
+  border: 1px solid red;
+  margin: 0.1em;
+  cursor: pointer;
+}
+
+
