@@ -7,61 +7,95 @@
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
-    <!-- Блок, состоящий из пяти черных квадратов. -->
-    <div class="black-squares">
-      <div class="black-square" id="square1">
-        <span class="text">1</span>
-        <div class="tooltip">#square1</div>
+    <!-- Создание одного общего блока для удобства отображения всех элементов. -->
+    <div class="container">
+      <!-- Блок, состоящий из пяти черных квадратов. -->
+      <div class="black-squares">
+        <div class="black-square" id="square1">
+          <span class="text">1</span>
+          <div class="tooltip">#square1</div>
+        </div>
+        <div class="black-square" id="square2">
+          <span class="text">2</span>
+          <div class="tooltip">#square2</div>
+        </div>
+        <div class="black-square" id="square3">
+          <span class="text">3</span>
+          <div class="tooltip">#square3</div>
+        </div>
+        <div class="black-square" id="square4">
+          <span class="text">4</span>
+          <div class="tooltip">#square4</div>
+        </div>
+        <div class="black-square" id="square5">
+          <span class="text">5</span>
+          <div class="tooltip">#square5</div>
+        </div>
       </div>
-      <div class="black-square" id="square2">
-        <span class="text">2</span>
-        <div class="tooltip">#square2</div>
-      </div>
-      <div class="black-square" id="square3">
-        <span class="text">3</span>
-        <div class="tooltip">#square3</div>
-      </div>
-      <div class="black-square" id="square4">
-        <span class="text">4</span>
-        <div class="tooltip">#square4</div>
-      </div>
-      <div class="black-square" id="square5">
-        <span class="text">5</span>
-        <div class="tooltip">#square5</div>
-      </div>
+
+      <!--1. Исчезновение черного квадрата различными способами, при нажатии соответствующей кнопки. -->
+      <button class="button" onclick="hideByCSS('square1')">Hide by CSS</button>
+      <button class="button" onclick="hideByJS('square1')">Hide by JS</button>
+      <button class="button" onclick="hideByCSSJS('square3')">
+        Hide by CSS+JS
+      </button>
+
+      <!--2. Исчезновение и появление квадрата. -->
+      <button class="button" onclick="toggleVisibility('square3')">
+        Toggle
+      </button>
+
+      <!--3. Одновременное исчезновение и появление всех пяти квадратов. -->
+      <button class="button" onclick="toggleSquares()">Toggle Squares</button>
+
+      <!--4. Добавление инпута для ввода 'CSS' селекторов и кнопки одновременного управления их отображением. -->
+      <input type="text" id="selectorInput" placeholder="Enter CSS Selector" />
+      <button class="button" onclick="toggleElementsBySelector()">
+        Toggle Elements
+      </button>
+
+      <!--5. Желтый квадрат. -->
+      <div
+        class="yellow-square"
+        id="square6"
+        onclick="showGreeting(this)"
+      ></div>
+
+      <!--6. Красный квадрат. -->
+      <button class="button" id="hoverButton">Hover Me</button>
+      <div class="red-square" id="square7"></div>
+
+      <!--7. Зеленый прямоугольник. -->
+      <div class="green-rectangle" id="rectangle"></div>
+
+      <!--8. Картинка с интернет страницы после нажатия кнопки для введенной ссылки в инпуте. -->
+      <!-- Добавляем инпут для ввода URL изображения -->
+      <input type="text" id="imageInput" placeholder="Enter Image URL" />
+      <!-- Добавляем кнопку для отображения изображения -->
+      <button class="button" onclick="showImage()">Show Image</button>
+      <!-- Контейнер для отображения изображения -->
+      <div class="image-preview" id="imageContainer"></div>
+
+      <!--9. Реализация инпута в 'textarea' с возможностью введения нескольких ссылок на различные изображения и их предпросмотра. -->
+      <textarea
+        id="imageTextarea"
+        placeholder="Enter Image URLs (one per line)"
+      ></textarea>
+      <button class="button" onclick="showImagesFromTextarea()">
+        Show Images
+      </button>
+      <div class="image-preview" id="imagesContainer"></div>
+
+      <!--10. Добавление координат курсора в верхнем правом углу страницы. -->
+      <div class="info" id="cursorCoordinates"></div>
+      <!--11. Получение информации о выбранном языке в браузере. -->
+      <div class="info" id="languageInfo"></div>
+      <!--12. Получение информации о координатах пользователя. -->
+      <div class="info" id="locationInfo"></div>
+
+      
+
     </div>
-
-    <!--1. Исчезновение черного квадрата различными способами, при нажатии соответствующей кнопки. -->
-    <button class="button" onclick="hideByCSS('square1')">Hide by CSS</button>
-    <button class="button" onclick="hideByJS('square1')">Hide by JS</button>
-    <button class="button" onclick="hideByCSSJS('square3')">
-      Hide by CSS+JS
-    </button>
-
-    <!--2. Исчезновение и появление квадрата. -->
-    <button class="button" onclick="toggleVisibility('square3')">Toggle</button>
-
-    <!--3. Одновременное исчезновение и появление всех пяти квадратов. -->
-    <button class="button" onclick="toggleSquares()">Toggle Squares</button>
-
-    <!--4. Добавление инпута для ввода 'CSS' селекторов и кнопки одновременного управления их отображением. -->
-    <input type="text" id="selectorInput" placeholder="Enter CSS Selector" />
-    <button class="button" onclick="toggleElementsBySelector()">
-      Toggle Elements
-    </button>
-
-    <!--5. Желтый квадрат. -->
-    <div class="yellow-square" id="square6" onclick="showGreeting(this)"></div>
-
-    <!--6. Красный квадрат. -->
-    <button class="button" id="hoverButton">Hover Me</button>
-    <div class="red-square" id="square7"></div>
-
-    <!--7. Зеленый прямоугольник. -->
-    <div class="green-rectangle" id="rectangle"></div>
-
-    
-
     <script src="js/script.js"></script>
   </body>
 </html>

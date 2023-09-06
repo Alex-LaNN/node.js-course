@@ -89,3 +89,61 @@ focusInput.addEventListener("input", (event) => {
     greenRectangle.style.display = "none";
   }
 });
+
+// 8. Инпут с возможностью введения ссылки на изображение и его предпросмотра.
+function showImage() {
+  // Получение URL изображения из инпута.
+  const imageUrl = document.getElementById("imageInput").value;
+  // Получение контейнера для изображения.
+  const imageContainer = document.getElementById("imageContainer");
+  // Создание элемента 'img' для изображения.
+  const imgElement = document.createElement("img");
+  imgElement.src = imageUrl;
+  imgElement.classList.add("image-preview");
+  // Очищаем контейнер и добавляем изображение.
+  imageContainer.innerHTML = "";
+  imageContainer.appendChild(imgElement);
+}
+
+// 9. Инпут с возможностью введения нескольких ссылок (каждая в новой строке) и их предпросмотра.
+function showImagesFromTextarea() {
+  // Получение URL изображений из инпута.
+  const imageUrls = document.getElementById("imageTextarea").value.split("\n");
+  // Получение контейнера для изображения.
+  const imagesContainer = document.getElementById("imagesContainer");
+  imagesContainer.innerHTML = "";
+
+  imageUrls.forEach((url) => {
+    // Создание элемента 'img' для изображения.
+    const imgElement = document.createElement("img");
+    imgElement.src = url;
+    imgElement.classList.add("image-preview");
+    imagesContainer.appendChild(imgElement);
+  });
+}
+
+// 10. Получение и вывод фактических координат курсора в браузере.
+document.addEventListener("mousemove", (event) => {
+  const cursorCoordinates = document.getElementById("cursorCoordinates");
+  const x = event.clientX;
+  const y = event.clientY;
+  cursorCoordinates.textContent = `X: ${x}, Y: ${y}`;
+});
+
+// 11. Получение и вывод значения предпочтительного языка в браузере.
+const languageInfo = document.getElementById("languageInfo");
+const browserLanguage = navigator.language;
+languageInfo.textContent = `Language: ${browserLanguage}`;
+
+// 12. Получение и вывод координат пользователя.
+const locationInfo = document.getElementById("locationInfo");
+navigator.geolocation.getCurrentPosition((position) => {
+  const coordinates = {
+    latitude: position.coords.latitude.toFixed(3),
+    longitude: position.coords.longitude.toFixed(3),
+  };
+  // Заполнение блока информацией.
+  locationInfo.textContent = `Location: Latitude: ${coordinates.latitude}, Longitude: ${coordinates.longitude}`;
+});
+
+// 

@@ -88,7 +88,7 @@ body {
 
 /* При наведении курсора на 'black-square', стили для класса 'tooltip' */
 .black-square:hover .tooltip {
-  /* Отображение подсказки при наведении */
+  /* Отображение подсказки (значение селектора для данного) при наведении */
   opacity: 1;
 }
 
@@ -142,4 +142,28 @@ body {
   cursor: pointer;
 }
 
+/* Стили для предпросмотра изображения. */
+.image-preview {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+/* Блоки отображения информации в правом верхнем углу браузера. */
+.info {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  color: red;
+}
+
+#languageInfo {
+  top: 25px; /* Отступ сверху для размещения блока. */
+}
+
+#locationInfo {
+  top: 50px; /* Отступ сверху для размещения блока. */
+}
 
