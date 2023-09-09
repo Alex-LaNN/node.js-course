@@ -146,4 +146,50 @@ navigator.geolocation.getCurrentPosition((position) => {
   locationInfo.textContent = `Location: Latitude: ${coordinates.latitude}, Longitude: ${coordinates.longitude}`;
 });
 
-// 
+// 13
+// Сохранение введенных данных в localStorage
+const localStorageBlock = document.getElementById("localStorageBlock");
+localStorageBlock.textContent = localStorage.getItem("localStorageData") || "";
+localStorageBlock.addEventListener("input", function () {
+  localStorage.setItem("localStorageData", this.textContent);
+});
+// Сохранение введенных данных в cookies
+const cookiesBlock = document.getElementById("cookiesBlock");
+cookiesBlock.textContent = getCookie("cookiesData") || "";
+cookiesBlock.addEventListener("input", function () {
+  const cookieText = this.textContent;
+  if (cookieText) {
+    const cookiesData = getCookie("cookiesData");
+    console.log("cookieText: " + cookieText);
+    console.log("cookiesData: " + cookiesData);
+    if (cookiesData) {
+      // Удаляем старую куку
+      document.cookie = `cookiesData=;expires=${new Date().toUTCString()};path=/`;
+    }
+    // Устанавливаем новую куку
+    setCookie("cookiesData", cookieText, 365);
+    console.log("++++++++++++++++");
+  }
+});
+// Сохранение введенных данных в sessionStorage
+const sessionStorageBlock = document.getElementById("sessionStorageBlock");
+sessionStorageBlock.textContent =
+  sessionStorage.getItem("sessionStorageData") || "";
+sessionStorageBlock.addEventListener("input", function () {
+  sessionStorage.setItem("sessionStorageData", this.textContent);
+});
+// Функция для получения cookie по имени
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+  return "";
+}
+// Функция для установки cookie
+function setCookie(name, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+  const expires = `expires=${date}`;
+  document.cookie = `${name}=${value}; ${expires}; path=/`;
+}
+

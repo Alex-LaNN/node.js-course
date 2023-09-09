@@ -167,3 +167,14 @@ body {
   top: 50px; /* Отступ сверху для размещения блока. */
 }
 
+/* Блоки с редактируемыми инпутами. */
+.editable-block {
+  border: 1px solid #2b8829;
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+  background-color: #e3c7c7;
+  width: 300px;
+  min-height: 50px;
+  cursor: pointer;
+}
