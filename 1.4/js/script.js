@@ -1,22 +1,29 @@
-// Исчезновение квадрата при помощи способа CSS (display: none).
+// Disappearing a square using CSS (display: none).
 function hideByCSS(elementId) {
   document.getElementById(elementId).classList.add("hidden");
 }
-// Исчезновение квадрата при помощи способа JS (удаление элемента).
+// Disappearing a square using the JS method (removing an element).
 function hideByJS(elementId) {
   const element = document.getElementById(elementId);
   element.parentNode.removeChild(element);
 }
-// Исчезновение квадрата при помощи способа CSS+JS.
+// Disappearing a square using the CSS+JS method.
+let clickCount1 = 0;
 function hideByCSSJS(elementId) {
   const element = document.getElementById(elementId);
   element.classList.add("hidden");
-  setTimeout(() => {
-    element.classList.remove("hidden");
-  }, 1000);
+  //  )))...
+  clickCount1++;
+  if (clickCount1 === 1) {
+    setTimeout(() => {
+      element.classList.remove("hidden");
+    }, 2000);
+  } else if (clickCount1 === 2) {
+    element.parentNode.removeChild(element);
+  }
 }
 
-// 2. Исчезновение и появление блока при нажатии на определенной кнопки.
+// 2. Disappearance and appearance of a block when a certain button is pressed.
 function toggleVisibility(elementId) {
   const element = document.getElementById(elementId);
   if (element.classList.contains("hidden")) {
@@ -26,7 +33,7 @@ function toggleVisibility(elementId) {
   }
 }
 
-// 3. Скрытие/появление блока, состоящего из 5ти элементов с использованием определенной кнопки.
+// 3. Hide/appear a block consisting of all 5 elements using a specific button.
 function toggleSquares() {
   const squares = document.querySelectorAll(".black-square");
   squares.forEach((square) => {
@@ -34,87 +41,86 @@ function toggleSquares() {
   });
 }
 
-// 4. Одновременное управление отображением элементов, полученных при помощи введенных значений CSS-селекторов из инпута.
+// 4. Simultaneously control the display of elements obtained using the entered values of their CSS selectors from the input.
 function toggleElementsBySelector() {
-  // Получение значений CSS-селекторов из инпута.
+  // Get CSS selector values from input.
   const selector = document.getElementById("selectorInput").value;
-
-  // Получение списка элементов, соответствующих введенным селекторам.
+  // Retrieving a list of elements matching the entered selectors.
   const elements = document.querySelectorAll(selector);
-
-  // Одновременное переключение класса "hidden" для каждого элемента.
+  // Simultaneously switch the "hidden" class for selected elements.
   elements.forEach((element) => {
     element.classList.toggle("hidden");
   });
 }
 
-// 5. Логика обработки нажатий на желтый квадрат.
-let clickCount = 0;
+// 5. Logic for processing clicks on the yellow square.
+let clickCount2 = 0;
 function showGreeting(element) {
-  clickCount++;
-  if (clickCount === 1) {
+  clickCount2++;
+  if (clickCount2 === 1) {
     alert("Привет");
-  } else if (clickCount === 2) {
+  } else if (clickCount2 === 2) {
     element.classList.add("hidden");
-    clickCount = 0;
+    clickCount2 = 0;
   }
 }
 
-// 6. Логика красного квадрата.
+// 6. Logic used for the red square.
 const hoverButton = document.getElementById("hoverButton");
 const redSquare = document.getElementById("square7");
-// Изначальное состояние - скрытие элемента.
+// The initial state is hiding the element.
 redSquare.classList.add("hidden");
-// Появление объекта, при наведении на определенную кнопку.
+// An object appears when you hover over a specific button.
 hoverButton.addEventListener("mouseenter", () => {
   redSquare.classList.remove("hidden");
 });
-// Скрытие объекта, при покидании курсором кнопки.
+// Hiding an object when the cursor leaves the button.
 hoverButton.addEventListener("mouseleave", () => {
   redSquare.classList.add("hidden");
 });
 
-// 7. Логика зеленого прямоугольника.
+// 7. Logic used for the green square.
 const focusInput = document.getElementById("selectorInput");
 const greenRectangle = document.getElementById("rectangle");
 greenRectangle.classList.add("hidden");
-// Слушатель события фокусировки на инпуте.
+// Input focus event listener.
 focusInput.addEventListener("focus", () => {
   greenRectangle.classList.remove("hidden");
 });
-// Слушатель события ввода текста в инпуте.
+// Listener for the text input event in the input.
 focusInput.addEventListener("input", (event) => {
-  // Если в инпуте начат ввод текста -> скрытие зеленого прямоугольника.
+  // If text input is started in the input -> hide the green rectangle.
   if (event.target.value.trim() !== "") {
     greenRectangle.style.display = "none";
   }
 });
 
-// 8. Инпут с возможностью введения ссылки на изображение и его предпросмотра.
+// 8. Input with the ability to enter a link to an image and preview it.
 function showImage() {
-  // Получение URL изображения из инпута.
+  // Getting the image URL from the input.
   const imageUrl = document.getElementById("imageInput").value;
-  // Получение контейнера для изображения.
+  // Gets the container for the image.
   const imageContainer = document.getElementById("imageContainer");
-  // Создание элемента 'img' для изображения.
+  // Creates an 'img' element for an image.
   const imgElement = document.createElement("img");
   imgElement.src = imageUrl;
   imgElement.classList.add("image-preview");
-  // Очищаем контейнер и добавляем изображение.
+  // Clearing the container and adding an image.
   imageContainer.innerHTML = "";
   imageContainer.appendChild(imgElement);
 }
 
-// 9. Инпут с возможностью введения нескольких ссылок (каждая в новой строке) и их предпросмотра.
+// 9. Input with the ability to enter several links to images (each on a new line) and preview them.
 function showImagesFromTextarea() {
-  // Получение URL изображений из инпута.
+  // Getting image URLs from input.
   const imageUrls = document.getElementById("imageTextarea").value.split("\n");
-  // Получение контейнера для изображения.
+  // Getting the container for the image.
   const imagesContainer = document.getElementById("imagesContainer");
+  // Emptying the contents of the container.
   imagesContainer.innerHTML = "";
 
+  // Create an 'img' element for each image from the resulting list.
   imageUrls.forEach((url) => {
-    // Создание элемента 'img' для изображения.
     const imgElement = document.createElement("img");
     imgElement.src = url;
     imgElement.classList.add("image-preview");
@@ -122,7 +128,7 @@ function showImagesFromTextarea() {
   });
 }
 
-// 10. Получение и вывод фактических координат курсора в браузере.
+// 10. Receiving and displaying the actual cursor coordinates in the browser.
 document.addEventListener("mousemove", (event) => {
   const cursorCoordinates = document.getElementById("cursorCoordinates");
   const x = event.clientX;
@@ -130,62 +136,59 @@ document.addEventListener("mousemove", (event) => {
   cursorCoordinates.textContent = `X: ${x}, Y: ${y}`;
 });
 
-// 11. Получение и вывод значения предпочтительного языка в браузере.
+// 11. Get and display the preferred language value in the browser.
 const languageInfo = document.getElementById("languageInfo");
 const browserLanguage = navigator.language;
 languageInfo.textContent = `Language: ${browserLanguage}`;
 
-// 12. Получение и вывод координат пользователя.
+// 12. Receiving and displaying user coordinates.
 const locationInfo = document.getElementById("locationInfo");
 navigator.geolocation.getCurrentPosition((position) => {
   const coordinates = {
     latitude: position.coords.latitude.toFixed(3),
     longitude: position.coords.longitude.toFixed(3),
   };
-  // Заполнение блока информацией.
+  // Filling a block with information.
   locationInfo.textContent = `Location: Latitude: ${coordinates.latitude}, Longitude: ${coordinates.longitude}`;
 });
 
-// 13
-// Сохранение введенных данных в localStorage
+// 13.
+// Saving entered data in localStorage.
 const localStorageBlock = document.getElementById("localStorageBlock");
 localStorageBlock.textContent = localStorage.getItem("localStorageData") || "";
 localStorageBlock.addEventListener("input", function () {
   localStorage.setItem("localStorageData", this.textContent);
 });
-// Сохранение введенных данных в cookies
+// Saving entered data in cookies.
 const cookiesBlock = document.getElementById("cookiesBlock");
 cookiesBlock.textContent = getCookie("cookiesData") || "";
 cookiesBlock.addEventListener("input", function () {
   const cookieText = this.textContent;
   if (cookieText) {
     const cookiesData = getCookie("cookiesData");
-    console.log("cookieText: " + cookieText);
-    console.log("cookiesData: " + cookiesData);
     if (cookiesData) {
-      // Удаляем старую куку
+      // Delete the old cookie.
       document.cookie = `cookiesData=;expires=${new Date().toUTCString()};path=/`;
     }
-    // Устанавливаем новую куку
+    // Set a new cookie.
     setCookie("cookiesData", cookieText, 365);
-    console.log("++++++++++++++++");
   }
 });
-// Сохранение введенных данных в sessionStorage
+// Saving entered data in sessionStorage.
 const sessionStorageBlock = document.getElementById("sessionStorageBlock");
 sessionStorageBlock.textContent =
   sessionStorage.getItem("sessionStorageData") || "";
 sessionStorageBlock.addEventListener("input", function () {
   sessionStorage.setItem("sessionStorageData", this.textContent);
 });
-// Функция для получения cookie по имени
+// Function for getting cookies by name.
 function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(";").shift();
   return "";
 }
-// Функция для установки cookie
+// Function to set a cookie.
 function setCookie(name, value, days) {
   const date = new Date();
   date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
@@ -193,3 +196,60 @@ function setCookie(name, value, days) {
   document.cookie = `${name}=${value}; ${expires}; path=/`;
 }
 
+// 14. Button to go to the top of the page.
+const scrollToTopButton = document.getElementById("scrollToTopButton");
+
+// Add a listener for the window scroll event.
+window.addEventListener("scroll", () => {
+  // Check if the vertical scroll position is greater than 100 pixels.
+  if (window.scrollY > 100) {
+    // Displays a button to scroll the window up.
+    scrollToTopButton.classList.remove("hidden");
+  } else {
+    // Continue hiding the button.
+    scrollToTopButton.classList.add("hidden");
+  }
+});
+
+// Function for scrolling the page up with smooth animation.
+function scrollToTop() {
+  window.scrollTo({
+    top: 0, // Scrolls the page up to the top of the browser window.
+    behavior: "smooth", // Add smooth animation.
+  });
+}
+
+// 15. Two blocks: one inside the other, causing 'alert'.
+// Function to display a popup window with a message.
+function showAlert(message) {
+  alert(message);
+}
+// Function to stop event propagation.
+function stopPropagation(event) {
+  event.stopPropagation();
+}
+
+// 16. Prohibition of page scrolling.
+const overlay = document.getElementById("overlay");
+const showOverlayButton = document.getElementById("showOverlayButton");
+// Add a "click" event listener for the "showOverlayButton" button.
+showOverlayButton.addEventListener("click", () => {
+  // Remove the "hidden" class from the "overlay" element to display it.
+  overlay.classList.remove("hidden");
+  // Freeze page scrolling.
+  document.body.style.overflow = "hidden";
+});
+// Function to hide the overlay and restore page scrolling.
+function hideOverlay() {
+  // Add a "hidden" class to the "overlay" element to hide it.
+  overlay.classList.add("hidden");
+  // Restore page scrolling.
+  document.body.style.overflow = "auto";
+}
+
+// 18. Stylish input.
+// Function to handle file selection.
+function handleFileSelect(event) {
+  // Get the selected file from the event.
+  const file = event.target.files[0];
+}

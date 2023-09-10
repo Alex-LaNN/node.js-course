@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
-    <!-- Создание одного общего блока для удобства отображения всех элементов. -->
+    <!-- Creating one parent block for easy display of all elements. -->
     <div class="container">
-      <!-- Блок, состоящий из пяти черных квадратов. -->
+      <!-- A block consisting of five black squares. -->
       <div class="black-squares">
         <div class="black-square" id="square1">
           <span class="text">1</span>
@@ -33,50 +33,50 @@
         </div>
       </div>
 
-      <!--1. Исчезновение черного квадрата различными способами, при нажатии соответствующей кнопки. -->
-      <button class="button" onclick="hideByCSS('square1')">Hide by CSS</button>
-      <button class="button" onclick="hideByJS('square1')">Hide by JS</button>
+      <!--1. Disappearance of the black square in various ways when you press the corresponding button. -->
+      <button class="button" onclick="hideByCSS('square1')">Hide by CSS for square №1</button>
+      <button class="button" onclick="hideByJS('square5')">Hide by JS for square №5</button>
       <button class="button" onclick="hideByCSSJS('square3')">
-        Hide by CSS+JS
+        Hide by CSS+JS for square №3
       </button>
 
-      <!--2. Исчезновение и появление квадрата. -->
-      <button class="button" onclick="toggleVisibility('square3')">
-        Toggle
+      <!--2. The disappearance and appearance of a square. -->
+      <button class="button" onclick="toggleVisibility('square2')">
+        Toggle for square №2
       </button>
 
-      <!--3. Одновременное исчезновение и появление всех пяти квадратов. -->
+      <!--3. Simultaneous disappearance and appearance of all five squares.-->
       <button class="button" onclick="toggleSquares()">Toggle Squares</button>
 
-      <!--4. Добавление инпута для ввода 'CSS' селекторов и кнопки одновременного управления их отображением. -->
+      <!--4. Adding an input for entering selected 'CSS' selectors and a button for simultaneously controlling their display. -->
       <input type="text" id="selectorInput" placeholder="Enter CSS Selector" />
       <button class="button" onclick="toggleElementsBySelector()">
-        Toggle Elements
+        Toggle Elements, according to the selected selector
       </button>
 
-      <!--5. Желтый квадрат. -->
+      <!--5. Yellow square. -->
       <div
         class="yellow-square"
         id="square6"
         onclick="showGreeting(this)"
       ></div>
 
-      <!--6. Красный квадрат. -->
+      <!--6. Red Square. -->
       <button class="button" id="hoverButton">Hover Me</button>
       <div class="red-square" id="square7"></div>
 
-      <!--7. Зеленый прямоугольник. -->
+      <!--7. Green rectangle. -->
       <div class="green-rectangle" id="rectangle"></div>
 
-      <!--8. Картинка с интернет страницы после нажатия кнопки для введенной ссылки в инпуте. -->
-      <!-- Добавляем инпут для ввода URL изображения -->
+      <!--8. Display a preview of the image after clicking the button with the entered link in the input. -->
+      <!-- Add an input for entering the image URL. -->
       <input type="text" id="imageInput" placeholder="Enter Image URL" />
-      <!-- Добавляем кнопку для отображения изображения -->
+      <!-- Add a button to display an image. -->
       <button class="button" onclick="showImage()">Show Image</button>
-      <!-- Контейнер для отображения изображения -->
+      <!-- Container for displaying an image. -->
       <div class="image-preview" id="imageContainer"></div>
 
-      <!--9. Реализация инпута в 'textarea' с возможностью введения нескольких ссылок на различные изображения и их предпросмотра. -->
+      <!--9. Implementation of an input in 'textarea' with the ability to enter several links to various images and preview them. -->
       <textarea
         id="imageTextarea"
         placeholder="Enter Image URLs (one per line)"
@@ -86,14 +86,14 @@
       </button>
       <div class="image-preview" id="imagesContainer"></div>
 
-      <!--10. Добавление координат курсора в верхнем правом углу страницы. -->
+      <!--10. Adds cursor coordinates to the upper right corner of the page. -->
       <div class="info" id="cursorCoordinates"></div>
-      <!--11. Получение информации о выбранном языке в браузере. -->
+      <!--11. Obtain information about the selected language in the browser. -->
       <div class="info" id="languageInfo"></div>
-      <!--12. Получение информации о координатах пользователя. -->
+      <!--12. Obtain information about the user's coordinates. -->
       <div class="info" id="locationInfo"></div>
 
-      <!--13. Три блока с редактируемыми инпутами. -->
+      <!--13. Three blocks with editable inputs. -->
       <div
         contenteditable="true"
         id="localStorageBlock"
@@ -110,8 +110,44 @@
         class="editable-block"
       ></div>
 
-      
+      <!--14. Button to go to the top of the page. -->
+      <button
+        class="scrollButton"
+        id="scrollToTopButton"
+        onclick="scrollToTop()"
+      >
+        Scroll to Top
+      </button>
 
+      <!--15. Two blocks: one inside the other, causing 'alert'. -->
+      <div
+        class="outerBlock"
+        id="outerBlock"
+        onclick="showAlert('Outer Block')"
+      >
+        <div
+          class="innerBlock"
+          id="innerBlock"
+          onclick="stopPropagation(event); showAlert('Inner Block')"
+        ></div>
+      </div>
+
+      <!--16. Prohibition of page scrolling. -->
+      <button class="button" id="showOverlayButton">Show Overlay</button>
+      <div id="overlay" class="hidden" onclick="hideOverlay()"></div>
+
+      <!--17. Prohibition of page reloading. -->
+      <form onsubmit="return false;">
+        <input class="input" type="submit" value="GO" />
+      </form>
+
+      <!--18. Stylish input. -->
+      <input
+        type="file"
+        id="fileInput"
+        class="styled-input"
+        onchange="handleFileSelect(event)"
+      />
     </div>
     <script src="js/script.js"></script>
   </body>

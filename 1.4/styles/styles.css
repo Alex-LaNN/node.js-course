@@ -1,122 +1,125 @@
-/* Стили для контейнера */
+/* Container styles. */
 .container {
-  /* Установка контейнеру flex-контекста для его дочерних элементов */
+  /* Setting a container to have a flex context for its children. */
   display: flex;
-  /* Установка направления контейнера по вертикали (столбцом) */
+  /* Setting container direction vertically (column). */
   flex-direction: column;
-  /* Центрирование по горизонтали */
+  /* Centering horizontally. */
   align-items: center;
-  /* Центрирование по вертикали */
+  /* Centering vertically. */
   justify-content: center;
-  /* Минимальная высота контейнера равная высоте видимой области окна браузера */
+  /* The minimum height of the container is equal to the height of the visible area of the browser window. */
   min-height: 100vh;
-  /*  */
+  /* The padding around the element. */
   margin: 10px;
 }
 
-/*  Стили для элемента 'body'  */
+/*  Styles for the 'body' element.  */
 body {
-  /* Установка шрифта для текста на странице */
+  /*Setting the font for text on the page. */
   font-family: Arial, sans-serif;
-  /* Уборка отступов по умолчанию для 'body' */
+  /* Remove default padding for 'body'. */
   margin: 0;
-  /* Установка внутренних отступов для 'body' */
+  /* Setting padding for 'body'. */
   padding: 5px;
 }
 
-/*  Стили для класса .button  */
+/*  Styles for the 'button' class.  */
 .button {
   height: 25px;
   margin: 2px;
+  /* Rounding the corners of a button. */
   border-radius: 5px;
   background-color: #4a9482;
-  /* Установка цвета текста на кнопке */
+  /* Setting the text color on a button. */
   color: rgb(255, 255, 255);
-  /* Установка курсора мыши в виде указателя при наведении на кнопку */
+  /* Set the mouse cursor as a pointer when hovering over a button. */
   cursor: pointer;
-  /* Создание тени кнопки */
+  /* Creating a Button Shadow. */
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-  /* Уборка границы кнопки */
+  /* Clean button border. */
   border: none;
-  /* Уборка контура вокруг кнопки при фокусе */
+  /* Cleaning the outline around the button when focusing. */
   outline: none;
-  /* Добавление плавной анимации для изменения цвета фона и трансформации кнопки */
+  /* Adding smooth animations to change the background color and transform the button. */
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* Стили для класса 'button' при наведении курсора */
+/* Styles for the 'button' class when hovering over the button. */
 .button:hover {
-  /* Изменение цвета фона кнопки при наведении курсора */
+  /* Change button background color on hover. */
   background-color: #125040;
-  /* Увеличение размера кнопки на 10% при наведении курсора */
+  /* Increase button size by 10% on hover. */
   transform: scale(1.1);
 }
 
-/* Стили для класса 'black-squares' */
+/* Styles for the 'black-squares' class. */
 .black-squares {
-  /* Делаем контейнер флекс-контейнером */
+  /* Making the container a flex container. */
   display: flex;
-  /* Расстояние между квадратами */
+  /* Distance between squares. */
   gap: 5px;
 }
 
-/* Стили для класса 'black-square' */
+/* Styles for the 'black-square' class. */
 .black-square {
   width: 100px;
   height: 100px;
   background-color: black;
-  /* Добавление зеленой границы вокруг квадрата */
-  border: 1px solid green;
-  /* Выравнивание содержимого квадрата по центру */
+  /* Adding a green border around a square. */
+  border: 2px solid green;
+  /* Align the contents of a square to the center. */
   text-align: center;
   color: white;
+  /* Text font size for square. */
   font-size: 16px;
-  /* Создание флекс-контейнера для центрирования содержимого */
+  /* Creating a flex container to center content. */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Устанавливаем позицию как относительную для корректного отображения содержимого */
+  /* Set the position as relative to display the content correctly. */
   position: relative;
-  /* Устанавливаем курсор в виде указателя при наведении на квадрат */
+  /* Set the cursor as a pointer when hovering over a square. */
   cursor: pointer;
 }
 
-/* Стили для класса 'text' */
+/* Styles for the 'text' class. */
 .text {
   color: white;
 }
 
-/* При наведении курсора на 'black-square', стили для класса 'tooltip' */
+/* When hovering over 'black-square', styles for class 'tooltip'. */
 .black-square:hover .tooltip {
-  /* Отображение подсказки (значение селектора для данного) при наведении */
+  /* Display a tooltip (selector value for a given square) when hovering the cursor. */
   opacity: 1;
 }
 
-/* Создаем стили для подсказки */
+/* Create tooltip styles. */
 .tooltip {
-  /* Устанавливаем абсолютное позиционирование для подсказки */
+  /* Set absolute positioning for the tooltip. */
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 5px;
   border-radius: 5px;
   font-size: 12px;
-  /* Расположение подсказки снизу */
+  /* Bottom tooltip location. */
   top: 100%;
-  /* Величина наложения подсказки на элемент */
+  /* Amount of tooltip overlay on element. */
   transform: translateY(-50%);
-  /* По умолчанию подсказка скрыта */
+  /* By default the tooltip is hidden. */
   opacity: 0;
-  /* Добавление анимации для плавного изменения непрозрачности */
+  /* Add animation to smoothly change opacity. */
   transition: opacity 0.3s ease-in-out;
 }
 
-/* Стили для класса '.hidden' */
+/* Styles for the 'hidden' class. */
 .hidden {
-  /* Скрытие элемента */
+  /* Hiding an element. */
   display: none;
 }
 
+/* Styles for the 'yellow-square' class. */
 .yellow-square {
   width: 100px;
   height: 100px;
@@ -125,14 +128,16 @@ body {
   margin: 0.1em;
 }
 
+/* Styles for the 'red-square' class. */
 .red-square {
   width: 50px;
   height: 50px;
   background-color: red;
-  border: 1px solid green;
+  border: 2px solid green;
   margin: 0.1em;
 }
 
+/* Styles for the 'green-rectangle' class. */
 .green-rectangle {
   width: 50px;
   height: 20px;
@@ -142,7 +147,7 @@ body {
   cursor: pointer;
 }
 
-/* Стили для предпросмотра изображения. */
+/* Styles for image preview. */
 .image-preview {
   max-width: 100%;
   max-height: 300px;
@@ -150,7 +155,7 @@ body {
   margin-right: 10px;
 }
 
-/* Блоки отображения информации в правом верхнем углу браузера. */
+/* Styles of the information display block in the upper right corner of the browser. */
 .info {
   position: fixed;
   top: 0;
@@ -159,15 +164,17 @@ body {
   color: red;
 }
 
+/* Additional styles. */
 #languageInfo {
-  top: 25px; /* Отступ сверху для размещения блока. */
+  top: 25px; /* Indentation at the top to accommodate the next block. */
 }
 
+/* Additional styles. */
 #locationInfo {
-  top: 50px; /* Отступ сверху для размещения блока. */
+  top: 50px;
 }
 
-/* Блоки с редактируемыми инпутами. */
+/* Blocks with editable inputs. */
 .editable-block {
   border: 1px solid #2b8829;
   padding: 10px;
@@ -177,4 +184,113 @@ body {
   width: 300px;
   min-height: 50px;
   cursor: pointer;
+}
+
+/* Styles for the scroll up button. */
+.scrollButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 50% 50% 0 0;
+  background-color: #3498db;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Temporary hiding of an element. */
+.scrollButton.hidden {
+  display: none;
+}
+
+/* Animation when hovering over 'scrollButton'. */
+.scrollButton:hover {
+  background-color: #2980b9;
+  transform: scale(1.1);
+}
+
+/* Styling the "up" symbol inside a button. */
+.scrollButton::before {
+  content: "\25b2"; /* Symbol code (up arrow). */
+  font-size: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* Styling the external block. */
+.outerBlock {
+  width: 300px;
+  height: 200px;
+  margin: 10px;
+  border: 1px solid black;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Styling the indoor unit. */
+.innerBlock {
+  width: 150px;
+  height: 150px;
+  background-color: #3498db;
+  border: 1px solid black;
+}
+
+/* Disable highlighting of text in blocks. */
+.outerBlock,
+.innerBlock {
+  user-select: none;
+}
+
+/* Illumination of the external block when hovering. */
+.outerBlock:hover {
+  background-color: #eef0d5;
+}
+
+/* Стили для элемента с id 'showOverlayButton'/ */
+#showOverlayButton {
+  margin: 4px;
+}
+
+/* Overlay styles. */
+#overlay {
+  /* Fixed position to stay on top of the content. */
+  position: fixed;
+  /* Complete coverage of the entire displayed page. */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Translucent dark background. */
+  z-index: 999; /* 'z-index' level to display on top of other elements. */
+}
+
+/* Styles for the '.input' class. */
+.input {
+  margin: 4px;
+}
+
+/* Styles for the '.styled-input' class. */
+.styled-input {
+  border: none;
+  padding: 10px 15px;
+  background-color: #b9297d;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  /* Adds smooth animations for background color and transformation. */
+  transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Styles for the '.styled-input' class on hover. */
+.styled-input:hover {
+  background-color: #34db8d;
+  transform: translateY(-2px); /* Slightly raises the element when hovering. */
 }
